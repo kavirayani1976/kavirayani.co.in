@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VenuGopal KaviRayani | తరాలకు నిలిచే పేరు</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dim: #8B6914;
+    --gold-glow: rgba(201,168,76,0.15);
+    --bg: #050505;
+    --bg2: #0A0A0A;
+    --bg3: #111108;
+    --text: #E8E0CC;
+    --text-dim: #8A8070;
+    --white: #F5F0E8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Crimson Pro', Georgia, serif;
+    cursor: none;
+    overflow-x: hidden;
+  }
+
+  /* Custom Cursor */
+  .cursor {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+  }
+  .cursor-ring {
+    width: 32px; height: 32px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.5;
+    transition: all 0.15s ease;
+  }
+
+  /* Noise overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Grid background */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(5,5,5,0.95), transparent);
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 8vw;
+    z-index: 2;
+    overflow: hidden;
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    right: -2vw;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    font-family: 'Syne', sans-serif;
+    font-size: 18vw;
+    font-weight: 800;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(201,168,76,0.06);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .hero-content { max-width: 800px; }
+
+  .hero-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s forwards 0.2s;
+  }
+
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s forwards 0.4s;
+  }
+
+  .hero-name span { color: var(--gold); }
+
+  .hero-telugu {
+    font-family: 'Crimson Pro', serif;
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    font-style: italic;
+    color: var(--gold-dim);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s forwards 0.6s;
+  }
+
+  .hero-desc {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-dim);
+    max-width: 540px;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s forwards 0.8s;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s forwards 1s;
+  }
+
+  .stat { text-align: left; }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .hero-divider {
+    width: 1px;
+    height: 60px;
+    background: var(--gold-dim);
+    opacity: 0.3;
+    align-self: center;
+  }
+
+  /* SCROLL INDICATOR */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeIn 1s forwards 1.5s;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  .scroll-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--text-dim);
+    letter-spacing: 0.2em;
+    writing-mode: vertical-rl;
+    text-transform: uppercase;
+  }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 2;
+    padding: 100px 8vw;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--gold-dim);
+    opacity: 0.4;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 60px;
+    line-height: 1.1;
+  }
+
+  /* ABOUT */
+  #about { background: var(--bg2); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+  }
+
+  .about-text p strong { color: var(--gold); font-weight: 600; }
+
+  .philosophy-box {
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 40px;
+    position: relative;
+    background: rgba(201,168,76,0.02);
+  }
+
+  .philosophy-box::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 30px;
+    font-size: 5rem;
+    color: var(--gold);
+    opacity: 0.3;
+    font-family: 'Crimson Pro', serif;
+    line-height: 1;
+  }
+
+  .philosophy-quote {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.6rem;
+    font-style: italic;
+    color: var(--gold-light);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .philosophy-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* 8 DIMENSIONS */
+  #dimensions { background: var(--bg); }
+
+  .dimensions-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+
+  .dimension-card {
+    background: var(--bg2);
+    padding: 40px 30px;
+    border: 1px solid rgba(201,168,76,0.08);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  .dimension-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--gold-glow), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .dimension-card:hover::before { opacity: 1; }
+  .dimension-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-4px); }
+
+  .dim-icon {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .dim-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--gold-dim);
+    letter-spacing: 0.2em;
+    margin-bottom: 8px;
+    opacity: 0.6;
+  }
+
+  .dim-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .dim-desc {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--text-dim);
+  }
+
+  /* CAREER TIMELINE */
+  #career { background: var(--bg3); }
+
+  .timeline {
+    position: relative;
+    padding-left: 40px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    opacity: 0.3;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 56px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.6s ease;
+  }
+
+  .timeline-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -44px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--bg3);
+    box-shadow: 0 0 12px var(--gold);
+  }
+
+  .timeline-item.current .timeline-dot {
+    width: 14px;
+    height: 14px;
+    left: -46px;
+    top: 4px;
+    animation: pulse 2s infinite;
+  }
+
+  .timeline-years {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    margin-bottom: 6px;
+  }
+
+  .timeline-company {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .timeline-role {
+    font-size: 1rem;
+    color: var(--gold-light);
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+
+  .timeline-desc {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  /* AWARDS */
+  #awards { background: var(--bg2); }
+
+  .awards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .award-card {
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 36px;
+    background: linear-gradient(135deg, rgba(201,168,76,0.03), transparent);
+    transition: all 0.3s;
+  }
+
+  .award-card:hover {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.06);
+  }
+
+  .award-icon { font-size: 2.5rem; margin-bottom: 16px; }
+
+  .award-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+  }
+
+  .award-org {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--gold-dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .award-desc { font-size: 0.9rem; color: var(--text-dim); line-height: 1.6; }
+
+  /* COMPETENCIES */
+  #competencies { background: var(--bg); }
+
+  .comp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .comp-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 24px;
+    border: 1px solid rgba(201,168,76,0.1);
+    transition: all 0.3s;
+  }
+
+  .comp-item:hover {
+    border-color: var(--gold);
+    background: var(--gold-glow);
+  }
+
+  .comp-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .comp-text {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.05em;
+  }
+
+  /* VENTURES */
+  #ventures { background: var(--bg3); }
+
+  .ventures-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  .venture-card {
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+  }
+
+  .venture-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+
+  .venture-card:hover::after { transform: scaleX(1); }
+  .venture-card:hover { background: rgba(201,168,76,0.02); }
+
+  .venture-status {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid currentColor;
+    display: inline-block;
+    margin-bottom: 24px;
+  }
+
+  .status-active { color: #4CAF50; }
+  .status-building { color: var(--gold); }
+  .status-planned { color: var(--text-dim); }
+
+  .venture-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .venture-tagline {
+    font-style: italic;
+    color: var(--gold-light);
+    margin-bottom: 16px;
+    font-size: 1rem;
+  }
+
+  .venture-desc { font-size: 0.95rem; color: var(--text-dim); line-height: 1.7; }
+
+  /* CONNECT */
+  #connect {
+    background: var(--bg2);
+    text-align: center;
+  }
+
+  .connect-inner { max-width: 600px; margin: 0 auto; }
+
+  .connect-tagline {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--text-dim);
+    margin-bottom: 48px;
+    line-height: 1.7;
+  }
+
+  .connect-links {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .connect-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .connect-btn:hover {
+    background: var(--gold);
+    color: var(--bg);
+  }
+
+  .connect-btn.primary {
+    background: var(--gold);
+    color: var(--bg);
+  }
+
+  .connect-btn.primary:hover {
+    background: var(--gold-light);
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 2;
+    padding: 32px 8vw;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+  }
+
+  .footer-philosophy {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--text-dim);
+  }
+
+  .footer-copy {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    opacity: 0.5;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 8px var(--gold); }
+    50% { box-shadow: 0 0 20px var(--gold), 0 0 40px rgba(201,168,76,0.3); }
+  }
+
+  /* REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    section { padding: 70px 6vw; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .dimensions-grid { grid-template-columns: repeat(2, 1fr); }
+    .awards-grid { grid-template-columns: 1fr; }
+    .comp-grid { grid-template-columns: 1fr; }
+    .ventures-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+    .hero-stats { gap: 24px; flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">KaviRayani</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#dimensions">Dimensions</a></li>
+    <li><a href="#career">Career</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#ventures">Ventures</a></li>
+    <li><a href="#connect">Connect</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-text">KAVIRAYANI</div>
+  <div class="hero-content">
+    <p class="hero-tag">Pharmaceutical Leader · Andhra Pradesh</p>
+    <h1 class="hero-name">VenuGopal<br><span>KaviRayani</span></h1>
+    <p class="hero-telugu">తరాలకు నిలిచే పేరు</p>
+    <p class="hero-desc">25+ years of building people, brands, and businesses across India's pharmaceutical landscape. Divisional Business Manager. Entrepreneur. Philosopher. A name built for generations.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">25+</div>
+        <div class="stat-label">Years in Pharma</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="stat">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Professionals Trained</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="stat">
+        <div class="stat-num">30</div>
+        <div class="stat-label">MR Team Size</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="stat">
+        <div class="stat-num">8</div>
+        <div class="stat-label">Life Dimensions</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span class="scroll-text">Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">01 — About</div>
+  <h2 class="section-title">The Man Behind<br>The Mission</h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>VenuGopal KaviRayani is a <strong>senior pharmaceutical leader</strong> with over 25 years of experience shaping India's healthcare landscape. Currently serving as <strong>Divisional Business Manager at Aristo Pharmaceuticals</strong>, he oversees all of Andhra Pradesh with a team of 30 Medical Representatives.</p>
+      <p>His journey spans the most respected names in Indian pharma — Macleods, Ranbaxy, Sanofi Aventis, Pulse, and Abbott — building not just sales numbers, but <strong>people, processes, and purpose</strong> at every step.</p>
+      <p>Beyond pharma, VenuGopal is a founder, philosopher, photographer, writer, and family man. His life philosophy extends across <strong>eight dimensions</strong> — each a strand in the fabric of a legacy being built for generations.</p>
+    </div>
+    <div class="reveal">
+      <div class="philosophy-box">
+        <p class="philosophy-quote">తరాలకు నిలిచే పేరు — A name that stands for generations.</p>
+        <p class="philosophy-sub">Life & Brand Philosophy</p>
+      </div>
+      <br>
+      <div class="philosophy-box" style="margin-top: 0;">
+        <p class="philosophy-quote">"We build slowly. We build solidly. We build ethically."</p>
+        <p class="philosophy-sub">Ethical Pharma Products Pvt. Ltd.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 DIMENSIONS -->
+<section id="dimensions">
+  <div class="section-label">02 — Identity</div>
+  <h2 class="section-title">8 Dimensions<br>of Life</h2>
+  <div class="dimensions-grid">
+    <div class="dimension-card reveal">
+      <span class="dim-icon">🏠</span>
+      <div class="dim-num">01</div>
+      <div class="dim-title">Family</div>
+      <div class="dim-desc">The foundation of everything. Every ambition, every legacy is built for and with family — the first and most important institution.</div>
+    </div>
+    <div class="dimension-card reveal">
+      <span class="dim-icon">🌍</span>
+      <div class="dim-num">02</div>
+      <div class="dim-title">Society</div>
+      <div class="dim-desc">A deep sense of responsibility toward Telugu culture, community, and the society that shaped this journey.</div>
+    </div>
+    <div class="dimension-card reveal">
+      <span class="dim-icon">🤝</span>
+      <div class="dim-num">03</div>
+      <div class="dim-title">Friends</div>
+      <div class="dim-desc">Relationships built on trust, loyalty, and decades of shared memories — the circle that keeps the spirit alive.</div>
+    </div>
+    <div class="dimension-card reveal">
+      <span class="dim-icon">🧠</span>
+      <div class="dim-num">04</div>
+      <div class="dim-title">Philosopher</div>
+      <div class="dim-desc">A seeker of meaning in every experience. Life is examined, questioned, and understood with depth and intention.</div>
+    </div>
+    <div class="dimension-card reveal">
+      <span class="dim-icon">📸</span>
+      <div class="dim-num">05</div>
+      <div class="dim-title">Photography</div>
+      <div class="dim-desc">The art of freezing moments in time — capturing beauty, culture, and human emotion through the lens.</div>
+    </div>
+    <div class="dimension-card reveal">
+      <span class="dim-icon">🎵</span>
+      <div class="dim-num">06</div>
+      <div class="dim-title">Music</div>
+      <div class="dim-desc">A deep love for Telugu classical traditions and the melodies that carry the soul of a culture forward.</div>
+    </div>
+    <div class="dimension-card reveal">
+      <span class="dim-icon">✍️</span>
+      <div class="dim-num">07</div>
+      <div class="dim-title">Writer</div>
+      <div class="dim-desc">Words as legacy. Crafting thoughts, stories, and ideas that endure beyond the moment of their creation.</div>
+    </div>
+    <div class="dimension-card reveal">
+      <span class="dim-icon">🔥</span>
+      <div class="dim-num">08</div>
+      <div class="dim-title">Motivator</div>
+      <div class="dim-desc">500+ professionals trained. A passion for unlocking human potential and building the next generation of leaders.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER TIMELINE -->
+<section id="career">
+  <div class="section-label">03 — Journey</div>
+  <h2 class="section-title">25 Years of<br>Excellence</h2>
+  <div class="timeline">
+    <div class="timeline-item current reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-years">2019 — Present</div>
+      <div class="timeline-company">Aristo Pharmaceuticals</div>
+      <div class="timeline-role">Divisional Business Manager — Andhra Pradesh</div>
+      <div class="timeline-desc">Leading Team OG across all of Andhra Pradesh with 30 Medical Representatives. Achieved India's No. 1 Division ranking from AP, earning the prestigious Champions Trophy.</div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-years">2013 — 2019</div>
+      <div class="timeline-company">Abbott India Ltd.</div>
+      <div class="timeline-role">Senior Sales Manager</div>
+      <div class="timeline-desc">Six impactful years with one of India's most respected pharmaceutical companies. Recipient of the MD Award — the highest recognition from Abbott India's Managing Director.</div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-years">2012 — 2013</div>
+      <div class="timeline-company">Pulse Pharmaceuticals</div>
+      <div class="timeline-role">Regional Sales Manager</div>
+      <div class="timeline-desc">Strategic leadership driving regional growth and market penetration across Andhra Pradesh.</div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-years">2010 — 2012</div>
+      <div class="timeline-company">Sanofi Aventis</div>
+      <div class="timeline-role">Area Sales Manager</div>
+      <div class="timeline-desc">Field leadership with one of the world's leading pharmaceutical multinationals, developing high-performance sales teams.</div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-years">2009 — 2010</div>
+      <div class="timeline-company">Ranbaxy Laboratories</div>
+      <div class="timeline-role">Area Sales Manager</div>
+      <div class="timeline-desc">Driving territory performance and doctor relationship management with India's iconic pharma brand.</div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-years">2001 — 2009</div>
+      <div class="timeline-company">Macleods Pharmaceuticals</div>
+      <div class="timeline-role">Medical Representative → Manager</div>
+      <div class="timeline-desc">An 8-year foundation journey — from grassroots Medical Representative to management, building the bedrock of a 25-year career.</div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+  <div class="section-label">04 — Recognition</div>
+  <h2 class="section-title">Honours &<br>Awards</h2>
+  <div class="awards-grid">
+    <div class="award-card reveal">
+      <div class="award-icon">🏆</div>
+      <div class="award-title">Champions Trophy</div>
+      <div class="award-org">Aristo Pharmaceuticals</div>
+      <div class="award-desc">Awarded for leading Andhra Pradesh to become India's No. 1 Division — the highest performance honour at Aristo.</div>
+    </div>
+    <div class="award-card reveal">
+      <div class="award-icon">🥇</div>
+      <div class="award-title">MD Award</div>
+      <div class="award-org">Abbott India Ltd.</div>
+      <div class="award-desc">The prestigious Managing Director's Award — Abbott India's highest recognition for exceptional leadership and sales excellence.</div>
+    </div>
+    <div class="award-card reveal">
+      <div class="award-icon">⭐</div>
+      <div class="award-title">500+ Professionals Trained</div>
+      <div class="award-org">25-Year Career Legacy</div>
+      <div class="award-desc">A career-long commitment to mentoring and developing pharmaceutical professionals across Andhra Pradesh and beyond.</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETENCIES -->
+<section id="competencies">
+  <div class="section-label">05 — Expertise</div>
+  <h2 class="section-title">Core<br>Competencies</h2>
+  <div class="comp-grid reveal">
+    <div class="comp-item"><div class="comp-dot"></div><span class="comp-text">Strategic Sales Leadership</span></div>
+    <div class="comp-item"><div class="comp-dot"></div><span class="comp-text">Team Building & Mentoring</span></div>
+    <div class="comp-item"><div class="comp-dot"></div><span class="comp-text">Territory Management (AP)</span></div>
+    <div class="comp-item"><div class="comp-dot"></div><span class="comp-text">Doctor & KOL Relationship Management</span></div>
+    <div class="comp-item"><div class="comp-dot"></div><span class="comp-text">Pharmaceutical Marketing</span></div>
+    <div class="comp-item"><div class="comp-dot"></div><span class="comp-text">Brand Strategy</span></div>
+    <div class="comp-item"><div class="comp-dot"></div><span class="comp-text">MR Training & Development</span></div>
+    <div class="comp-item"><div class="comp-dot"></div><span class="comp-text">Nutraceutical Business Development</span></div>
+    <div class="comp-item"><div class="comp-dot"></div><span class="comp-text">Ethical Business Practices</span></div>
+    <div class="comp-item"><div class="comp-dot"></div><span class="comp-text">Performance Analytics</span></div>
+    <div class="comp-item"><div class="comp-dot"></div><span class="comp-text">Entrepreneurship</span></div>
+    <div class="comp-item"><div class="comp-dot"></div><span class="comp-text">Telugu Cultural Leadership</span></div>
+  </div>
+</section>
+
+<!-- VENTURES -->
+<section id="ventures">
+  <div class="section-label">06 — Future</div>
+  <h2 class="section-title">Ventures &<br>Vision</h2>
+  <div class="ventures-grid">
+    <div class="venture-card reveal">
+      <span class="venture-status status-building">Building</span>
+      <div class="venture-name">Ethical Pharma Products</div>
+      <div class="venture-tagline">"Not Just Treating Disease — Enhancing the Quality of Life"</div>
+      <div class="venture-desc">A nutraceutical and preventive wellness company rooted in ethical practices. 7 specialty brands under the 7 Wonder Concept — serving Diabetology, Cardiology, Neurology, Orthopedics, Men's & Women's Wellness, and Onco Wellness. Zero cash margins. Pure purpose.</div>
+    </div>
+    <div class="venture-card reveal">
+      <span class="venture-status status-active">Live</span>
+      <div class="venture-name">Azu Bazu</div>
+      <div class="venture-tagline">"Your Neighborhood, Digitized"</div>
+      <div class="venture-desc">A hyperlocal shop directory connecting communities across Andhra Pradesh. GPS-powered, Telugu-first, built for Bharat. Bridging local businesses with digital discovery — one neighbourhood at a time.</div>
+    </div>
+    <div class="venture-card reveal">
+      <span class="venture-status status-planned">2030 Vision</span>
+      <div class="venture-name">KuDum KoFFee</div>
+      <div class="venture-tagline">"Taste the Tradition, Feel the Family"</div>
+      <div class="venture-desc">A family café rooted in South Indian tradition. Filter coffee. Warmth. Belonging. The KaviRayani family brand extended into hospitality — where every cup carries a story and every visit feels like home.</div>
+    </div>
+    <div class="venture-card reveal">
+      <span class="venture-status status-active">Live</span>
+      <div class="venture-name">KaviRayani Brand</div>
+      <div class="venture-tagline">"తరాలకు నిలిచే పేరు"</div>
+      <div class="venture-desc">The umbrella identity binding every venture, value, and vision. A family name being consciously built into a legacy brand — across pharma, technology, hospitality, and culture — for generations to come.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONNECT -->
+<section id="connect">
+  <div class="section-label" style="justify-content:center;">07 — Connect</div>
+  <h2 class="section-title" style="text-align:center;">Let's Build<br>Together</h2>
+  <div class="connect-inner reveal">
+    <p class="connect-tagline">"A name built for generations welcomes connections that last a lifetime. Reach out — for collaboration, mentorship, or simply a meaningful conversation."</p>
+    <div class="connect-links">
+      <a href="mailto:VenugKavirayani@gmail.com" class="connect-btn primary">📧 Email Me</a>
+      <a href="https://wa.me/91XXXXXXXXXX" class="connect-btn">💬 WhatsApp</a>
+      <a href="https://www.linkedin.com/in/kavirayani" class="connect-btn">🔗 LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">KaviRayani</div>
+  <div class="footer-philosophy">తరాలకు నిలిచే పేరు</div>
+  <div class="footer-copy">© 2026 VenuGopal KaviRayani. All rights reserved.</div>
+</footer>
+
+<script>
+  // Custom Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.left = mouseX - 4 + 'px';
+    cursor.style.top = mouseY - 4 + 'px';
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ring.style.left = ringX - 16 + 'px';
+    ring.style.top = ringY - 16 + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // Scroll Reveal
+  const reveals = document.querySelectorAll('.reveal, .timeline-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav active state
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.background = window.scrollY > 50 
+      ? 'rgba(5,5,5,0.98)' 
+      : 'linear-gradient(to bottom, rgba(5,5,5,0.95), transparent)';
+  });
+</script>
+</body>
+</html>
